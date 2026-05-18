@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Delete Account — Trivd</title>
+  <meta name="description" content="Request deletion of your Trivd account and associated data."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="canonical" href="https://trivd.courtrightco.com/delete-account.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #08080F; --navy: #13132A; --card: #1A1A2E;
+      --purple: #7C3AED; --purple-lt: #9D60F8;
+      --yellow: #FFE500; --pink: #FF2D92; --green: #22C55E;
+      --muted: #6B7280;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Outfit",sans-serif;background:var(--black);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+
+    nav{
+      padding:1rem 4rem;background:rgba(8,8,15,0.97);
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid rgba(124,58,237,0.2);
+    }
+    .nav-back{font-size:0.67rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:color 0.2s}
+    .nav-back::before{content:"←"}
+    .nav-back:hover{color:var(--yellow)}
+    .nav-wordmark{font-family:"Outfit",sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em;color:var(--yellow);text-shadow:0 0 12px rgba(255,229,0,0.5);text-decoration:none}
+
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:4rem 2rem}
+
+    .card{
+      background:var(--card);border:1px solid rgba(124,58,237,0.2);
+      border-radius:16px;padding:3rem;max-width:560px;width:100%;
+    }
+    .card-icon{font-size:2.5rem;margin-bottom:1.2rem}
+    .card h1{
+      font-family:"Outfit",sans-serif;font-weight:700;font-size:1.6rem;
+      color:#fff;margin-bottom:0.8rem;line-height:1.2;
+    }
+    .card-sub{font-size:0.93rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:2rem}
+
+    .steps{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+    .step{
+      display:flex;gap:1rem;align-items:flex-start;
+      background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.15);
+      border-radius:10px;padding:1.2rem;
+    }
+    .step-num{
+      width:28px;height:28px;border-radius:50%;background:var(--purple);
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.75rem;font-weight:700;flex-shrink:0;
+    }
+    .step-content{}
+    .step-label{font-size:0.85rem;font-weight:600;color:#fff;margin-bottom:0.3rem}
+    .step-detail{font-size:0.82rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6}
+    .step-detail strong{color:var(--yellow);font-weight:500}
+    .step-detail code{
+      background:rgba(255,229,0,0.08);border:1px solid rgba(255,229,0,0.2);
+      border-radius:4px;padding:0.15rem 0.5rem;font-family:monospace;font-size:0.8rem;
+      color:var(--yellow);
+    }
+
+    .mailto-btn{
+      display:block;width:100%;padding:1.1rem;text-align:center;
+      background:var(--purple);color:#fff;text-decoration:none;
+      font-family:"Outfit",sans-serif;font-size:0.85rem;font-weight:700;
+      letter-spacing:0.1em;text-transform:uppercase;border-radius:100px;
+      transition:all 0.2s;box-shadow:0 0 20px rgba(124,58,237,0.3);
+    }
+    .mailto-btn:hover{background:var(--purple-lt);transform:translateY(-1px);box-shadow:0 0 32px rgba(124,58,237,0.5)}
+
+    .note{
+      margin-top:1.5rem;padding:1rem 1.2rem;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+      border-radius:8px;font-size:0.78rem;font-weight:300;
+      color:rgba(255,255,255,0.35);line-height:1.7;
+    }
+
+    footer{background:#050508;padding:2rem 4rem;border-top:1px solid rgba(124,58,237,0.1);text-align:center}
+    .footer-copy{font-size:0.7rem;color:var(--muted);opacity:0.4}
+
+    @media(max-width:600px){
+      nav{padding:1rem 1.5rem}
+      main{padding:3rem 1.2rem}
+      .card{padding:2rem 1.5rem}
+      footer{padding:2rem 1.5rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-back" href="/">Trivd</a>
+    <a class="nav-wordmark" href="/">Trivd</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="card-icon">🗑️</div>
+      <h1>Delete Your Trivd Account</h1>
+      <p class="card-sub">To request deletion of your Trivd account and all associated data, follow the steps below. All requests are processed within 30 days.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-label">Send an email to us</div>
+            <div class="step-detail">Email <strong>info@courtrightco.com</strong> from any email address.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-label">Use this subject line</div>
+            <div class="step-detail"><code>Account Deletion Request</code></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">Include your account info</div>
+            <div class="step-detail">Include the <strong>name or email address</strong> associated with your Trivd account so we can locate it.</div>
+          </div>
+        </div>
+      </div>
+
+      <a class="mailto-btn" href="mailto:info@courtrightco.com?subject=Account%20Deletion%20Request&body=Please%20delete%20my%20Trivd%20account.%20My%20account%20email%20or%20name%20is%3A%20">
+        📧 Open Email Request
+      </a>
+
+      <p class="note">
+        Once we receive your request, your account and all associated data will be permanently deleted within 30 days. This includes your game history, stats, and any saved preferences. This action cannot be undone. If you have an active subscription, please cancel it through the App Store or Google Play before submitting your request.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-copy">© 2025 Courtright Collective LLC · <a href="/privacy.html" style="color:inherit">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
