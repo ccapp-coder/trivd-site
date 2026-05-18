@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Sitemap: https://trivd.courtrightco.com/sitemap.xml
+
+# auto-deploy test from cowork: 2026-05-18
