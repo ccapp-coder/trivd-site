@@ -448,6 +448,18 @@
     }
     .btn-big-outline:hover { border-color:var(--yellow); color:var(--yellow); }
 
+    /* ── STORE BADGES ── */
+    .store-badges { display:flex; gap:1rem; justify-content:center; align-items:center; flex-wrap:wrap; }
+    .store-badges a { display:inline-flex; transition:transform 0.2s; }
+    .store-badges a:hover { transform:translateY(-3px); }
+    .store-badges img { height:56px; width:auto; display:block; }
+    .store-badges .badge-google img { height:83px; }
+    .hero-badges-stores { justify-content:flex-start; margin-top:1.75rem; }
+    .hero-badges-stores img { height:48px; }
+    .hero-badges-stores .badge-google img { height:71px; }
+    .cta-section .store-badges { margin-bottom:1.75rem; }
+    @media (max-width:820px){ .hero-badges-stores { justify-content:center; } }
+
     /* ── FOOTER ── */
     footer {
       background:#050508; padding:4rem 4rem 2.5rem;
@@ -940,6 +952,14 @@
         <a href="#download" class="btn-primary">⚡ Play Free</a>
         <a href="#modes" class="btn-outline">See Game Modes</a>
       </div>
+      <div class="store-badges hero-badges-stores">
+        <a href="https://apps.apple.com/us/app/trivd-trivia-game-challenges/id6764037610" target="_blank" rel="noopener" aria-label="Download Trivd on the App Store">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" loading="lazy"/>
+        </a>
+        <a class="badge-google" href="https://play.google.com/store/apps/details?id=com.trivd.app" target="_blank" rel="noopener" aria-label="Get Trivd on Google Play">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" loading="lazy"/>
+        </a>
+      </div>
       <div class="hero-badges">
         <span class="badge badge-yellow">⚡ Speed Duel</span>
         <span class="badge badge-purple">🎯 Accuracy</span>
@@ -1259,8 +1279,15 @@
       <p class="cta-eyebrow">Available Now · Free to Play</p>
       <h2 class="cta-headline">Trivd.</h2>
       <p class="cta-sub">You are about to get Trivd.</p>
+      <div class="store-badges">
+        <a href="https://apps.apple.com/us/app/trivd-trivia-game-challenges/id6764037610" target="_blank" rel="noopener" aria-label="Download Trivd on the App Store">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" loading="lazy"/>
+        </a>
+        <a class="badge-google" href="https://play.google.com/store/apps/details?id=com.trivd.app" target="_blank" rel="noopener" aria-label="Get Trivd on Google Play">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" loading="lazy"/>
+        </a>
+      </div>
       <div class="cta-buttons">
-        <a href="#" class="btn-big">⚡ Download Free</a>
         <a href="https://courtrightco.com" class="btn-big-outline">← Courtright Collective</a>
       </div>
     </div>
