@@ -1686,10 +1686,12 @@ function updatePillsNote() {
     : total + ' round' + (total !== 1 ? 's' : '') + ' selected';
 }
 
-// ── STRIPE CONFIG ──────────────────────────────────────
-// Replace these with your real Stripe values after setup
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/6oUeVc98334iczae7Q7EQ00';
-const STRIPE_SUCCESS_PARAM = 'tng_paid'; // param Stripe adds on success
+// ── PAYMENT FLOW ───────────────────────────────────────
+// Payment is fully server-driven: the Worker creates a Stripe Checkout
+// Session with the form data, we redirect to Stripe's hosted page, and
+// after paying the user comes back to /?session_id=cs_XXX#tools.
+// The Worker verifies payment with Stripe before generating the quiz,
+// so the URL cannot be forged to get free trivia.
 
 function setTopicMode(m) {
   _tngTopicMode = m;
@@ -1702,74 +1704,69 @@ function setTopicMode(m) {
     : 'Pick topics from the Trivd library. Each selected topic becomes one round.';
 }
 
-function doStartPayment() {
-  // Check if returning from successful Stripe payment
+async function doStartPayment() {
+  // If we're already returning from a paid session, just kick off generation.
   const params = new URLSearchParams(window.location.search);
-  if (params.get(STRIPE_SUCCESS_PARAM) === '1') {
-    doGenerateTNG();
+  const returningSession = params.get('session_id');
+  if (returningSession) {
+    doGenerateTNG(returningSession);
     return;
   }
-  // Validate form before sending to Stripe
+
+  // Validate form before hitting the Worker.
   if (_tngTopicMode === 'manual' && (_tngSelTopics.length + _tngCustomTopics.length) === 0) {
     document.getElementById('tng-error').style.display = 'block';
     document.getElementById('tng-error').textContent = 'Pick or type at least one topic first.';
     return;
   }
   document.getElementById('tng-error').style.display = 'none';
-  // Save form state to sessionStorage so we can restore after redirect
-  sessionStorage.setItem('tng_pending', JSON.stringify({
+
+  var btn = document.getElementById('tng-gen-btn');
+  var statusEl = document.getElementById('tng-payment-status');
+  btn.disabled = true;
+  statusEl.textContent = 'Opening secure checkout…';
+
+  var payload = {
     mode: _tngTopicMode,
     topics: _tngSelTopics,
     customTopics: _tngCustomTopics,
     rounds: document.getElementById('tng-rounds').value,
     qpr: document.getElementById('tng-qpr').value,
-    diff: document.getElementById('tng-diff').value,
+    difficulty: document.getElementById('tng-diff').value,
     name: document.getElementById('tng-name').value,
-  }));
-  // Build return URL with success param
-  const returnUrl = window.location.href.split('?')[0] + '?tng_paid=1#tools';
-  // Redirect to Stripe — append success_url as query param
-  window.location.href = STRIPE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(returnUrl);
+  };
+
+  try {
+    var res = await fetch(WORKER_URL + '/create-checkout', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    });
+    var data = await res.json();
+    if (!res.ok || !data.url) {
+      throw new Error((data && data.error) || ('Server returned ' + res.status));
+    }
+    // Off we go to Stripe.
+    window.location.href = data.url;
+  } catch (err) {
+    btn.disabled = false;
+    statusEl.textContent = '';
+    document.getElementById('tng-error').style.display = 'block';
+    document.getElementById('tng-error').textContent =
+      'Couldn\'t start checkout: ' + err.message;
+  }
 }
 
 function checkPaymentReturn() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get(STRIPE_SUCCESS_PARAM) !== '1') return;
-  // Restore saved form state
-  const saved = sessionStorage.getItem('tng_pending');
-  if (saved) {
-    try {
-      const s = JSON.parse(saved);
-      _tngTopicMode = s.mode || 'ai';
-      _tngSelTopics = s.topics || [];
-      setTopicMode(_tngTopicMode);
-      if (s.customTopics) {
-        _tngCustomTopics = s.customTopics;
-        renderCustomChips();
-      }
-      if (s.rounds) document.getElementById('tng-rounds').value = s.rounds;
-      if (s.qpr)    document.getElementById('tng-qpr').value = s.qpr;
-      if (s.diff)   document.getElementById('tng-diff').value = s.diff;
-      if (s.name)   document.getElementById('tng-name').value = s.name;
-      // Re-highlight selected pills
-      if (_tngSelTopics.length > 0) {
-        _tngSelTopics.forEach(function(t) {
-          var btn = document.querySelector('.topic-pill-btn[data-t="' + t + '"]');
-          if (btn) btn.classList.add('sel');
-        });
-        document.getElementById('pills-note').textContent =
-          _tngSelTopics.length + ' round' + (_tngSelTopics.length !== 1 ? 's' : '') + ' selected';
-      }
-      sessionStorage.removeItem('tng_pending');
-    } catch(e) {}
-  }
-  // Show payment confirmed status and switch to TNG tab
+  const sessionId = params.get('session_id');
+  if (!sessionId) return;
+
   document.getElementById('tng-payment-status').textContent = '✓ Payment confirmed';
   switchTool('tng', document.getElementById('tab-tng'));
-  // Auto-generate
-  setTimeout(doGenerateTNG, 400);
-  // Clean URL
-  window.history.replaceState({}, '', window.location.pathname + '#tools');
+  // Kick off generation. Form data lives on the Worker (keyed by the
+  // Stripe session's metadata), so we don't need sessionStorage restore.
+  setTimeout(function() { doGenerateTNG(sessionId); }, 300);
 }
 
 function initTopicPills() {
@@ -1794,24 +1791,17 @@ function initTopicPills() {
   }
 }
 
-async function doGenerateTNG() {
+async function doGenerateTNG(sessionId) {
   if (WORKER_URL.indexOf('YOUR-SUBDOMAIN') !== -1) {
     document.getElementById('tng-error').style.display = 'block';
     document.getElementById('tng-error').textContent =
       'Worker not configured. See the setup banner above for instructions.';
     return;
   }
-
-  var allTopics = _tngSelTopics.concat(_tngCustomTopics);
-  var rounds   = _tngTopicMode === 'manual' ? allTopics.length : parseInt(document.getElementById('tng-rounds').value);
-  var qpr      = parseInt(document.getElementById('tng-qpr').value);
-  var diff     = document.getElementById('tng-diff').value;
-  var name     = document.getElementById('tng-name').value.trim() || 'Trivd Night';
-
-  var allTopics = _tngSelTopics.concat(_tngCustomTopics);
-  if (_tngTopicMode === 'manual' && allTopics.length === 0) {
+  if (!sessionId) {
     document.getElementById('tng-error').style.display = 'block';
-    document.getElementById('tng-error').textContent = 'Pick or type at least one topic.';
+    document.getElementById('tng-error').textContent =
+      'Missing payment session. Complete checkout first.';
     return;
   }
 
@@ -1835,27 +1825,28 @@ async function doGenerateTNG() {
   }, 2200);
 
   try {
-    var payload = {
-      mode: _tngTopicMode,
-      topics: _tngTopicMode === 'manual' ? allTopics : null,
-      rounds: rounds, qpr: qpr, difficulty: diff
-    };
     var res = await fetch(WORKER_URL + '/trivia-night', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ session_id: sessionId })
     });
     clearInterval(msgTimer);
-    if (!res.ok) throw new Error('Worker returned ' + res.status);
-    var data = await res.json();
+    var data;
+    try { data = await res.json(); } catch(e) { data = null; }
+    if (!res.ok) {
+      throw new Error((data && data.error) || ('Worker returned ' + res.status));
+    }
     loadEl.style.display = 'none';
-    renderTNG(data, name);
+    var eventName = (data && data.event_name) || 'Trivd Night';
+    var rounds    = (data && data.rounds) || data;
+    renderTNG(rounds, eventName);
   } catch(err) {
     clearInterval(msgTimer);
     loadEl.style.display = 'none';
     document.getElementById('tng-error').style.display = 'block';
     document.getElementById('tng-error').textContent =
-      'Couldn\'t generate the quiz. Make sure the Worker is deployed. (' + err.message + ')';
+      'Couldn\'t generate the quiz: ' + err.message +
+      '. If you paid, refresh this page — your session_id is still in the URL and we\'ll retry.';
   }
   document.getElementById('tng-gen-btn').disabled = false;
 }
