@@ -15,7 +15,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Trivd"/>
-  <meta property="og:title" content="Trivd — Free Trivia App | Daily Challenge & Trivia Night Generator"/>
+  <meta property="og:title" content="Trivd | Free Trivia App | Daily Challenge & Trivia Night Generator"/>
   <meta property="og:description" content="Free trivia app with Speed Duel, Bar Mode, Chaos Mode, and Accuracy Mode. Play the Daily Challenge and generate full trivia nights in seconds."/>
   <meta property="og:url" content="https://trivd.courtrightco.com"/>
   <meta property="og:image" content="https://trivd.courtrightco.com/og.jpg"/>
@@ -23,7 +23,7 @@
   <meta property="og:image:height" content="630"/>
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Trivd — Free Trivia App | Daily Challenge & Trivia Night Generator"/>
+  <meta name="twitter:title" content="Trivd | Free Trivia App | Daily Challenge & Trivia Night Generator"/>
   <meta name="twitter:description" content="Free trivia app with Speed Duel, Bar Mode, Chaos Mode, and Accuracy Mode. Play the Daily Challenge and generate full trivia nights in seconds."/>
   <meta name="twitter:image" content="https://trivd.courtrightco.com/og.jpg"/>
   <script type="application/ld+json">
@@ -205,7 +205,7 @@
     .badge-pink   { background:rgba(255,45,146,0.1); color:var(--pink); border:1px solid rgba(255,45,146,0.3); }
     .badge-green  { background:rgba(34,197,94,0.1); color:var(--green); border:1px solid rgba(34,197,94,0.3); }
 
-    /* hero right — phone mockup stack */
+    /* hero right, phone mockup stack */
     .hero-right {
       position:relative; z-index:1;
       opacity:0; animation:fadeUp 0.9s 0.6s ease forwards;
@@ -1016,7 +1016,7 @@
       <h1 class="hero-title">Trivd</h1>
       <p class="hero-tagline"><strong>You are about to get Trivd.</strong></p>
       <p class="hero-desc">
-        A trivia app built the right way. Thousands of questions across music, sports, geography, pop culture, Star Wars, and more. Speed duels, bar nights, chaos mode — pick your poison.
+        A trivia app built the right way. Thousands of questions across music, sports, geography, pop culture, Star Wars, and more. Speed duels, bar nights, chaos mode. Pick your poison.
       </p>
       <div class="hero-ctas">
         <a href="#download" class="btn-primary">⚡ Play Free</a>
@@ -1059,14 +1059,6 @@
         <p class="tools-sub">Two free tools built for Trivd players and trivia night hosts.</p>
       </div>
 
-      <!-- Worker setup banner — hidden once configured -->
-      <div class="setup-banner reveal" id="setup-banner" style="display:none">
-        <span class="setup-banner-icon">⚙️</span>
-        <p>
-          <strong style="color:#fff">Worker not configured yet.</strong> The Daily Challenge needs a Cloudflare Worker to run. Once your Worker is deployed, paste your URL into the <code>WORKER_URL</code> constant at the top of this file's script block. The Trivia Night Generator calls it too.
-          <br><br>See <code>trivd-daily-worker.js</code> for full setup instructions — takes about 5 minutes on Cloudflare's free tier.
-        </p>
-      </div>
 
       <div class="tool-tabs reveal">
         <button class="tool-tab active" id="tab-daily" onclick="switchTool('daily',this)">⚡ Daily Challenge</button>
@@ -1134,7 +1126,7 @@
               <button class="topic-mode-btn ai active" id="mode-ai" onclick="setTopicMode('ai')">✨ AI Picks Witty Topics</button>
               <button class="topic-mode-btn manual" id="mode-manual" onclick="setTopicMode('manual')">🎯 I Pick the Topics</button>
             </div>
-            <p class="topic-mode-desc" id="mode-desc">AI generates a unique witty topic for each round — universal, surprising, fun.</p>
+            <p class="topic-mode-desc" id="mode-desc">AI generates a unique witty topic for each round: universal, surprising, fun.</p>
             <div class="manual-topics" id="manual-topics">
               <div class="topic-pills" id="topic-pills-wrap">
                 <button class="topic-pill-btn" data-t="General Knowledge">🧠 General Knowledge</button>
@@ -1149,7 +1141,7 @@
                 <button class="topic-pill-btn" data-t="Animals">🐾 Animals</button>
                 <button class="topic-pill-btn" data-t="Movies & TV">🎥 Movies &amp; TV</button>
               </div>
-              <p class="topic-pills-note" id="pills-note">Select topics — each selected topic becomes one round</p>
+              <p class="topic-pills-note" id="pills-note">Select topics. Each selected topic becomes one round</p>
               <!-- Custom topic input -->
               <div class="custom-topic-row">
                 <input type="text" id="custom-topic-input" class="custom-topic-input" placeholder="Or type your own topic and press Enter..." maxlength="60"/>
@@ -1163,9 +1155,9 @@
             <div class="tng-field" id="rounds-field">
               <label>Number of Rounds</label>
               <select id="tng-rounds">
-                <option value="3">3 rounds — Quick night</option>
-                <option value="5" selected>5 rounds — Classic</option>
-                <option value="7">7 rounds — Full night</option>
+                <option value="3">3 rounds: Quick night</option>
+                <option value="5" selected>5 rounds: Classic</option>
+                <option value="7">7 rounds: Full night</option>
               </select>
             </div>
             <div class="tng-field">
@@ -1241,7 +1233,7 @@
         <span class="mode-icon">⚡</span>
         <div class="mode-name">Speed Duel</div>
         <div class="mode-sub">1v1 · First correct answer wins</div>
-        <p class="mode-desc">Race head-to-head. First player to tap the right answer takes the round. Fastest fingers win — knowledge helps, but reflexes matter.</p>
+        <p class="mode-desc">Race head-to-head. First player to tap the right answer takes the round. Fastest fingers win. Knowledge helps, but reflexes matter.</p>
       </div>
       <div class="mode-card accuracy">
         <span class="mode-icon">🎯</span>
@@ -1319,7 +1311,7 @@
         <p class="section-label lbl-yellow">What You'll Play</p>
         <h2 class="topics-headline">Something for <em>everyone.</em></h2>
         <p class="topics-body">
-          Free topics cover the classics — sports, music, geography, science, and more. Expansion packs unlock specialty categories for when the group wants to go deeper.
+          Free topics cover the classics: sports, music, geography, science, and more. Expansion packs unlock specialty categories for when the group wants to go deeper.
         </p>
         <div class="topic-chips">
           <span class="topic-chip">🧠 General Knowledge</span>
@@ -1397,7 +1389,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">© 2025 Courtright Collective LLC. All rights reserved.</p>
+        <p class="footer-copy">© 2026 Courtright Collective LLC. All rights reserved.</p>
         <p class="footer-parent">Part of <a href="https://courtrightco.com">Courtright Collective</a></p>
         <div class="footer-social">
           <a href="https://www.instagram.com/tinkertaps/" target="_blank">Instagram</a>
@@ -1419,7 +1411,7 @@
 // ══════════════════════════════════════════════════════════
 //  TRIVD TOOLS
 //  Set WORKER_URL once your Cloudflare Worker is deployed.
-//  Leave as-is for now — setup banner will show.
+//  Leave as-is for now, setup banner will show.
 // ══════════════════════════════════════════════════════════
 const WORKER_URL = 'https://trivd-api.tinkertapsapp.workers.dev';
 
@@ -1466,14 +1458,6 @@ async function initDaily() {
   if (chip) chip.textContent = d.toLocaleDateString('en-US', {weekday:'long',month:'long',day:'numeric'});
   updateStreakDisplay();
 
-  // Check if Worker URL is still the placeholder
-  if (WORKER_URL.indexOf('YOUR-SUBDOMAIN') !== -1) {
-    document.getElementById('setup-banner').style.display = 'flex';
-    document.getElementById('daily-error-msg').textContent =
-      'Worker not configured. See the setup-banner above for instructions.';
-    showDailyState('error');
-    return;
-  }
 
   // Already played today?
   var streak = getLS('trivd_streak') || {};
@@ -1635,7 +1619,7 @@ function doShare() {
   var ds = d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
   var s = getLS('trivd_streak') || {};
   var txt =
-    'Trivd Daily Challenge — ' + ds + '\n' +
+    'Trivd Daily Challenge: ' + ds + '\n' +
     'Topic: ' + (s.topic || 'Today\'s Challenge') + '\n' +
     s.score + '/' + s.total + ' ' + (s.emojis || []).join('') + '\n' +
     '🔥 Streak: ' + (s.streak||1) + ' day' + ((s.streak||1)!==1?'s':'') + '\n\n' +
@@ -1683,7 +1667,7 @@ function updatePillsNote() {
   var note = document.getElementById('pills-note');
   if (!note) return;
   note.textContent = total === 0
-    ? 'Select or type topics — each topic becomes one round'
+    ? 'Select or type topics. Each topic becomes one round'
     : total + ' round' + (total !== 1 ? 's' : '') + ' selected';
 }
 
@@ -1701,7 +1685,7 @@ function setTopicMode(m) {
   document.getElementById('manual-topics').classList.toggle('show', m === 'manual');
   document.getElementById('rounds-field').style.display = m === 'ai' ? 'block' : 'none';
   document.getElementById('mode-desc').textContent = m === 'ai'
-    ? 'AI generates a unique witty topic for each round — universal, surprising, fun.'
+    ? 'AI generates a unique witty topic for each round: universal, surprising, fun.'
     : 'Pick topics from the Trivd library. Each selected topic becomes one round.';
 }
 
@@ -1793,12 +1777,6 @@ function initTopicPills() {
 }
 
 async function doGenerateTNG(sessionId) {
-  if (WORKER_URL.indexOf('YOUR-SUBDOMAIN') !== -1) {
-    document.getElementById('tng-error').style.display = 'block';
-    document.getElementById('tng-error').textContent =
-      'Worker not configured. See the setup banner above for instructions.';
-    return;
-  }
   if (!sessionId) {
     document.getElementById('tng-error').style.display = 'block';
     document.getElementById('tng-error').textContent =
@@ -1847,7 +1825,7 @@ async function doGenerateTNG(sessionId) {
     document.getElementById('tng-error').style.display = 'block';
     document.getElementById('tng-error').textContent =
       'Couldn\'t generate the quiz: ' + err.message +
-      '. If you paid, refresh this page — your session_id is still in the URL and we\'ll retry.';
+      '. If you paid, refresh this page. Your session_id is still in the URL and we\'ll retry.';
   }
   document.getElementById('tng-gen-btn').disabled = false;
 }
