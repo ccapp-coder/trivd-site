@@ -11,7 +11,7 @@
   <link rel="canonical" href="https://trivd.courtrightco.com"/>
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2308080F'/><text x='16' y='24' font-family='Georgia' font-size='18' font-weight='bold' fill='%23FFE500' text-anchor='middle'>T</text></svg>"/>
-  <link rel="apple-touch-icon" href="https://trivd.courtrightco.com/og.jpg"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Trivd"/>
@@ -31,7 +31,14 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" crossorigin/>
+  <link rel="preload" as="image" href="/img/phone-front.webp" type="image/webp" media="(min-width: 961px)" fetchpriority="high"/>
+  <style>
+    /* Hero font, declared inline so the title does not wait on the Google Fonts stylesheet */
+    @font-face { font-family:'Outfit'; font-style:normal; font-weight:300 800; font-display:swap; src:url(https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap"/></noscript>
   <style>
     :root {
       --black:      #08080F;
@@ -990,6 +997,16 @@
       .reveal{transition:opacity .4s ease}
     }
 
+  
+    /* Phones: shorter hero entrance so the largest text paints sooner (mobile LCP) */
+    @media (max-width:960px){
+      .hero-kicker{animation-delay:0s}
+      .hero-title{animation:fadeUp 0.45s 0.05s ease forwards, titleGlow 3.4s 1s ease-in-out infinite}
+      .hero-tagline{animation-delay:0.1s}
+      .hero-desc{animation-delay:0.15s}
+      .hero-ctas{animation-delay:0.2s}
+      .hero-badges{animation-delay:0.25s}
+    }
   </style>
 </head>
 <body>
@@ -998,7 +1015,7 @@
   <nav id="nav">
     <a class="nav-back" href="https://courtrightco.com">Courtright Collective</a>
     <a class="nav-center" href="#">
-      <div class="nav-icon"><img src="/img/app-icon.webp" style="max-width:100%;border-radius:inherit" alt="Trivd app icon" width="512" height="512" loading="eager" decoding="async"></div>
+      <div class="nav-icon"><img src="/img/app-icon-96.webp" style="max-width:100%;border-radius:inherit" alt="Trivd app icon" width="96" height="96" loading="eager" decoding="async"></div>
       <span class="nav-wordmark">Trivd</span>
     </a>
     <div class="nav-right">
@@ -1056,7 +1073,7 @@
       <div class="tools-header reveal">
         <p class="section-label lbl-purple">Free to Use</p>
         <h2 class="tools-headline">Play. <em>Share. Host.</em></h2>
-        <p class="tools-sub">Two free tools built for Trivd players and trivia night hosts.</p>
+        <p class="tools-sub">Two tools built for Trivd players and trivia night hosts. Want to try before you buy? <a href="/trivia-night-generator" style="color:var(--yellow)">Get a free 10-question round</a>.</p>
       </div>
 
 
@@ -1264,19 +1281,19 @@
     </div>
     <div class="phones-row reveal">
       <div class="phone-ss-wrap">
-        <img src="/img/home-game-modes.webp" style="max-width:100%;border-radius:inherit" alt="Trivd home screen showing game modes" width="720" height="1280" loading="lazy" decoding="async">
+        <img src="/img/home-game-modes.webp" style="max-width:100%;border-radius:inherit" alt="Trivd home screen showing game modes" width="480" height="853" loading="lazy" decoding="async">
         <div class="phone-ss-label"><span>Home</span> · Game Modes</div>
       </div>
       <div class="phone-ss-wrap">
-        <img src="/img/live-streak-multiplier.webp" style="max-width:100%;border-radius:inherit" alt="A live round with the streak multiplier" width="720" height="1280" loading="lazy" decoding="async">
+        <img src="/img/live-streak-multiplier.webp" style="max-width:100%;border-radius:inherit" alt="A live round with the streak multiplier" width="480" height="853" loading="lazy" decoding="async">
         <div class="phone-ss-label"><span>Live</span> · Streak Multiplier</div>
       </div>
       <div class="phone-ss-wrap">
-        <img src="/img/round-leaderboard.webp" style="max-width:100%;border-radius:inherit" alt="End-of-round leaderboard" width="720" height="1280" loading="lazy" decoding="async">
+        <img src="/img/round-leaderboard.webp" style="max-width:100%;border-radius:inherit" alt="End-of-round leaderboard" width="480" height="853" loading="lazy" decoding="async">
         <div class="phone-ss-label"><span>Round</span> · Leaderboard</div>
       </div>
       <div class="phone-ss-wrap">
-        <img src="/img/profile-stats-streaks.webp" style="max-width:100%;border-radius:inherit" alt="Player profile with stats and streaks" width="720" height="1280" loading="lazy" decoding="async">
+        <img src="/img/profile-stats-streaks.webp" style="max-width:100%;border-radius:inherit" alt="Player profile with stats and streaks" width="480" height="853" loading="lazy" decoding="async">
         <div class="phone-ss-label"><span>Profile</span> · Stats &amp; Streaks</div>
       </div>
     </div>
@@ -1329,7 +1346,7 @@
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.1s">
-        <img src="/img/topic-categories.webp" style="max-width:100%;border-radius:inherit" alt="Trivd topic categories" width="720" height="1280" loading="lazy" decoding="async">
+        <img src="/img/topic-categories.webp" style="max-width:100%;border-radius:inherit" alt="Trivd topic categories" width="480" height="853" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -1361,7 +1378,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo-row">
-            <div class="footer-logo-img"><img src="/img/wordmark.webp" alt="Trivd" width="300" height="300" loading="lazy" decoding="async"></div>
+            <div class="footer-logo-img"><img src="/img/wordmark-96.webp" alt="Trivd" width="96" height="96" loading="lazy" decoding="async"></div>
             <span class="footer-wordmark">Trivd</span>
           </div>
           <p class="footer-tagline">You are about to get Trivd.<br>A Courtright Collective app.</p>
@@ -1373,8 +1390,9 @@
               <li><a href="#download">Download Free</a></li>
               <li><a href="#modes">Game Modes</a></li>
               <li><a href="#topics">Topics</a></li>
-              <li><a href="/faq.html">FAQ</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/trivia-night-generator">Free Trivia Round</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
               <li><a href="/terms">Terms of Service</a></li>
             </ul>
           </div>
@@ -1392,7 +1410,7 @@
         <p class="footer-copy">© 2026 Courtright Collective LLC. All rights reserved.</p>
         <p class="footer-parent">Part of <a href="https://courtrightco.com">Courtright Collective</a></p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/tinkertaps/" target="_blank">Instagram</a>
+          <a href="https://www.instagram.com/trivdapp/" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
     </div>
@@ -1416,6 +1434,14 @@
 const WORKER_URL = 'https://trivd-api.tinkertapsapp.workers.dev';
 
 // ── Helpers ────────────────────────────────────────────────
+// House style: no em dashes. Question data comes from the API (AI written),
+// so normalize every string in a payload before caching or rendering it.
+function noEmDash(v) {
+  if (typeof v === 'string') return v.replace(/\s*\u2014\s*/g, function(m){ return /^\s|\s$/.test(m) ? ', ' : ' - '; });
+  if (Array.isArray(v)) return v.map(noEmDash);
+  if (v && typeof v === 'object') { var o = {}; for (var k in v) o[k] = noEmDash(v[k]); return o; }
+  return v;
+}
 function todayStr() {
   return new Date().toISOString().split('T')[0];
 }
@@ -1469,7 +1495,7 @@ async function initDaily() {
   // Check local cache for today's questions
   var cache = getLS('trivd_daily_cache_' + today);
   if (cache && cache.topic && cache.questions) {
-    _dqData = cache;
+    _dqData = noEmDash(cache);
     renderDailyGame();
     return;
   }
@@ -1479,7 +1505,7 @@ async function initDaily() {
   try {
     var res = await fetch(WORKER_URL + '/daily?date=' + today);
     if (!res.ok) throw new Error('Worker returned ' + res.status);
-    var payload = await res.json();
+    var payload = noEmDash(await res.json());
     if (!payload.topic || !payload.questions) throw new Error('Bad payload');
     _dqData = payload;
     setLS('trivd_daily_cache_' + today, payload);
@@ -1811,7 +1837,7 @@ async function doGenerateTNG(sessionId) {
     });
     clearInterval(msgTimer);
     var data;
-    try { data = await res.json(); } catch(e) { data = null; }
+    try { data = noEmDash(await res.json()); } catch(e) { data = null; }
     if (!res.ok) {
       throw new Error((data && data.error) || ('Worker returned ' + res.status));
     }
@@ -1874,6 +1900,12 @@ window.addEventListener('load', function() {
   initTopicPills();
   initDaily();
   checkPaymentReturn();
+  // /#trivia-night (linked from /trivia-night-generator) opens the paid generator tab.
+  if (location.hash === '#trivia-night') {
+    switchTool('tng', document.getElementById('tab-tng'));
+    var tools = document.getElementById('tools');
+    if (tools) tools.scrollIntoView();
+  }
 });
 </script>
 

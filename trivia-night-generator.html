@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Free Trivia Night Generator: 10-Question Round | Trivd</title>
+  <meta name="description" content="Generate a free 10-question trivia round in one tap. Pick your categories, shuffle, reveal the answers, then get a full trivia night for $2.49 from Trivd."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://trivd.courtrightco.com/trivia-night-generator"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2308080F'/><text x='16' y='24' font-family='Georgia' font-size='18' font-weight='bold' fill='%23FFE500' text-anchor='middle'>T</text></svg>"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Trivd"/>
+  <meta property="og:title" content="Free Trivia Night Generator | Trivd"/>
+  <meta property="og:description" content="A free 10-question trivia round, generated on the spot. Pick categories, shuffle, reveal the answers."/>
+  <meta property="og:url" content="https://trivd.courtrightco.com/trivia-night-generator"/>
+  <meta property="og:image" content="https://trivd.courtrightco.com/og.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Free Trivia Night Generator | Trivd"/>
+  <meta name="twitter:description" content="A free 10-question trivia round, generated on the spot. Pick categories, shuffle, reveal the answers."/>
+  <meta name="twitter:image" content="https://trivd.courtrightco.com/og.jpg"/>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is the trivia night generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every sample round on this page is free, with no account and no sign-up. Tap Generate as many times as you like for a fresh set of 10 questions."}},
+    {"@type":"Question","name":"How are the questions picked?","acceptedAnswer":{"@type":"Answer","text":"The page draws 10 questions at random from a built-in bank, spread across the categories you select. Nothing is sent to a server, so it works instantly."}},
+    {"@type":"Question","name":"What do I get with the $2.49 full trivia night?","acceptedAnswer":{"@type":"Answer","text":"The full night builds 3, 5 or 7 rounds of 5 to 10 questions each on the topics you choose, or on witty topics picked for you, with a host answer sheet. It costs $2.49 per trivia night, paid securely through Stripe."}},
+    {"@type":"Question","name":"Can I use these questions at a bar, school or party?","acceptedAnswer":{"@type":"Answer","text":"Yes. Read them aloud, print the page, or put it on a screen. Tap Show Answers when it is time to score."}},
+    {"@type":"Question","name":"How do I host a trivia night?","acceptedAnswer":{"@type":"Answer","text":"Split players into teams, read each question twice, give about 30 seconds to write an answer, then reveal the answers at the end of the round. One point per correct answer, and the team with the most points wins."}}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2" crossorigin/>
+  <style>
+    @font-face { font-family:'Outfit'; font-style:normal; font-weight:300 800; font-display:swap; src:url(https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    :root {
+      --black:#08080F; --dark:#0E0E1A; --navy:#13132A; --card:#1A1A2E;
+      --purple:#7C3AED; --purple-lt:#9D60F8; --yellow:#FFE500; --pink:#FF2D92;
+      --green:#22C55E; --white:#FFFFFF; --muted:#6B7280; --smoke:#9CA3AF;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Outfit",system-ui,sans-serif; background:var(--black); color:var(--white); line-height:1.55; overflow-wrap:anywhere; }
+    a { color:var(--yellow); }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:0.75rem; padding:0.9rem 1.25rem; background:rgba(8,8,15,0.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(124,58,237,0.25); }
+    .nav-center { display:flex; align-items:center; gap:0.6rem; text-decoration:none; }
+    .nav-icon { width:34px; height:34px; border-radius:9px; overflow:hidden; flex-shrink:0; }
+    .nav-icon img { width:100%; height:100%; display:block; }
+    .nav-wordmark { font-weight:800; font-size:1.4rem; letter-spacing:-0.02em; color:var(--yellow); text-shadow:0 0 12px rgba(255,229,0,0.6); }
+    .btn-nav { padding:0.5rem 1rem; background:var(--purple); color:#fff; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:100px; white-space:nowrap; }
+    main { max-width:820px; margin:0 auto; padding:2.5rem 1.25rem 3rem; }
+    .kicker { display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--purple-lt); background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.35); border-radius:100px; padding:0.35rem 0.9rem; margin-bottom:1rem; }
+    h1 { font-weight:800; font-size:clamp(2rem,6vw,3.2rem); line-height:1.05; letter-spacing:-0.03em; margin-bottom:0.9rem; }
+    h1 em { font-style:normal; color:var(--yellow); text-shadow:0 0 18px rgba(255,229,0,0.55); }
+    .lead { color:var(--smoke); font-size:1.05rem; max-width:60ch; margin-bottom:1.6rem; }
+    .panel { background:var(--card); border:1px solid rgba(124,58,237,0.25); border-radius:20px; padding:1.25rem; margin-bottom:1.5rem; }
+    .panel h2 { font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--smoke); font-weight:700; margin-bottom:0.8rem; }
+    .cats { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; }
+    .cat { font:inherit; font-size:0.9rem; font-weight:500; color:var(--white); background:var(--navy); border:1.5px solid rgba(157,96,248,0.35); border-radius:100px; padding:0.5rem 0.95rem; min-height:44px; cursor:pointer; }
+    .cat[aria-pressed="true"] { background:var(--purple); border-color:var(--purple); }
+    .actions { display:flex; flex-wrap:wrap; gap:0.6rem; }
+    .btn { font:inherit; font-weight:700; border:0; border-radius:100px; padding:0.8rem 1.4rem; min-height:48px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; }
+    .btn-yellow { background:var(--yellow); color:var(--black); box-shadow:0 0 22px rgba(255,229,0,0.35); }
+    .btn-ghost { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.25); }
+    .note { font-size:0.85rem; color:var(--smoke); margin-top:0.7rem; }
+    ol.round { list-style:none; counter-reset:q; display:grid; gap:0.75rem; }
+    ol.round li { counter-increment:q; background:var(--navy); border-radius:14px; padding:0.9rem 1rem 0.9rem 3.1rem; position:relative; }
+    ol.round li::before { content:counter(q); position:absolute; left:0.9rem; top:0.85rem; width:1.6rem; height:1.6rem; border-radius:50%; background:rgba(255,229,0,0.12); color:var(--yellow); font-weight:800; font-size:0.85rem; display:grid; place-items:center; }
+    .q-cat { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple-lt); font-weight:700; }
+    .q-text { font-size:1.02rem; margin:0.15rem 0 0.35rem; }
+    .q-ans { font-size:0.95rem; color:var(--green); font-weight:600; }
+    .round.hide-answers .q-ans { visibility:hidden; }
+    .upsell { background:linear-gradient(135deg, rgba(124,58,237,0.35), rgba(255,45,146,0.18)); border:1px solid rgba(157,96,248,0.5); border-radius:20px; padding:1.4rem 1.25rem; margin:2rem 0; }
+    .upsell h2 { font-size:1.5rem; font-weight:800; margin-bottom:0.4rem; }
+    .upsell p { color:#E5E7EB; margin-bottom:1rem; }
+    .price { color:var(--yellow); font-weight:800; }
+    .faq h2 { font-size:1.6rem; font-weight:800; margin:2.5rem 0 1rem; }
+    .faq details { background:var(--card); border-radius:14px; padding:0.9rem 1rem; margin-bottom:0.6rem; }
+    .faq summary { cursor:pointer; font-weight:600; }
+    .faq details p { color:var(--smoke); margin-top:0.5rem; }
+    footer { border-top:1px solid rgba(255,255,255,0.08); padding:2rem 1.25rem; text-align:center; font-size:0.85rem; color:var(--smoke); }
+    footer a { color:var(--smoke); margin:0 0.5rem; display:inline-block; padding:0.3rem 0; }
+    @media print { nav, .panel.controls, .upsell, .faq, footer { display:none; } body { background:#fff; color:#000; } ol.round li { background:#fff; border:1px solid #ccc; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-center" href="/">
+      <span class="nav-icon"><img src="/img/app-icon-96.webp" alt="Trivd app icon" width="96" height="96"/></span>
+      <span class="nav-wordmark">Trivd</span>
+    </a>
+    <a class="btn-nav" href="/#download">Get the App</a>
+  </nav>
+
+  <main>
+    <span class="kicker">Free Trivia Night Generator</span>
+    <h1>A free trivia round, <em>ready in one tap.</em></h1>
+    <p class="lead">Pick your categories and hit Generate for 10 random questions with answers. Perfect for a quick bar round, a classroom warm-up or a family game night. Want the whole night? Trivd builds every round for $2.49.</p>
+
+    <section class="panel controls" aria-labelledby="cat-head">
+      <h2 id="cat-head">Categories</h2>
+      <div class="cats" id="cats"></div>
+      <div class="actions">
+        <button class="btn btn-yellow" id="gen" type="button">Generate 10 Questions</button>
+        <button class="btn btn-ghost" id="toggle" type="button" aria-pressed="false">Show Answers</button>
+        <button class="btn btn-ghost" id="print" type="button">Print</button>
+      </div>
+      <p class="note" id="note">Each tap shuffles a new round from the built-in question bank.</p>
+    </section>
+
+    <section aria-label="Your trivia round">
+      <ol class="round hide-answers" id="round"></ol>
+    </section>
+
+    <section class="upsell">
+      <h2>Hosting the whole night?</h2>
+      <p>Get a full trivia night for <span class="price">$2.49</span>: 3, 5 or 7 rounds, 5 to 10 questions each, on your topics or witty ones we pick, with a host answer sheet. Secure checkout through Stripe and it generates right after.</p>
+      <a class="btn btn-yellow" href="/#trivia-night">Build my full night for $2.49</a>
+    </section>
+
+    <section class="faq">
+      <h2>Questions</h2>
+      <details><summary>Is the trivia night generator really free?</summary><p>Yes. Every sample round on this page is free, with no account and no sign-up. Tap Generate as many times as you like for a fresh set of 10 questions.</p></details>
+      <details><summary>How are the questions picked?</summary><p>The page draws 10 questions at random from a built-in bank, spread across the categories you select. Nothing is sent to a server, so it works instantly.</p></details>
+      <details><summary>What do I get with the $2.49 full trivia night?</summary><p>The full night builds 3, 5 or 7 rounds of 5 to 10 questions each on the topics you choose, or on witty topics picked for you, with a host answer sheet. It costs $2.49 per trivia night, paid securely through Stripe.</p></details>
+      <details><summary>Can I use these questions at a bar, school or party?</summary><p>Yes. Read them aloud, print the page, or put it on a screen. Tap Show Answers when it is time to score.</p></details>
+      <details><summary>How do I host a trivia night?</summary><p>Split players into teams, read each question twice, give about 30 seconds to write an answer, then reveal the answers at the end of the round. One point per correct answer, and the team with the most points wins.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">Trivd Home</a>
+    <a href="/#tools">Daily Challenge</a>
+    <a href="/faq">FAQ</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="mailto:info@courtrightco.com">Contact</a>
+    <p style="margin-top:0.8rem">&copy; 2026 Courtright Collective LLC</p>
+  </footer>
+
+  <script>
+  (function () {
+    // Built-in question bank: [question, answer]. No em dashes anywhere.
+    var BANK = {
+      "General Knowledge": [
+        ["How many sides does a hexagon have?", "Six"],
+        ["What is the largest planet in our solar system?", "Jupiter"],
+        ["How many minutes are in a full day?", "1,440"],
+        ["What color do you get by mixing blue and yellow?", "Green"],
+        ["Which month has the fewest days?", "February"],
+        ["How many strings does a standard guitar have?", "Six"],
+        ["What is the hardest natural substance on Earth?", "Diamond"],
+        ["In a deck of standard playing cards, how many cards are there (no jokers)?", "52"],
+        ["What is the freezing point of water in Fahrenheit?", "32 degrees"],
+        ["Which instrument has 88 keys?", "The piano"],
+        ["How many continents are there?", "Seven"],
+        ["What is the name of the toy cube puzzle invented by Erno Rubik?", "Rubik's Cube"]
+      ],
+      "Geography": [
+        ["What is the capital of Australia?", "Canberra"],
+        ["Which river flows through Cairo?", "The Nile"],
+        ["What is the smallest US state by area?", "Rhode Island"],
+        ["Mount Everest sits on the border of Nepal and which other country?", "China"],
+        ["Which country has the city of Marrakech?", "Morocco"],
+        ["What is the largest ocean on Earth?", "The Pacific Ocean"],
+        ["What is the capital of Canada?", "Ottawa"],
+        ["Which US state is known as the Sunshine State?", "Florida"],
+        ["Reykjavik is the capital of which country?", "Iceland"],
+        ["Which desert covers much of northern Africa?", "The Sahara"],
+        ["How many US states border the Pacific Ocean (including Alaska and Hawaii)?", "Five"],
+        ["Which country is shaped like a boot?", "Italy"]
+      ],
+      "Science": [
+        ["What gas do plants absorb from the air for photosynthesis?", "Carbon dioxide"],
+        ["What is the chemical symbol for gold?", "Au"],
+        ["How many bones are in the adult human body?", "206"],
+        ["What planet is known as the Red Planet?", "Mars"],
+        ["What is H2O more commonly called?", "Water"],
+        ["Which organ pumps blood through the body?", "The heart"],
+        ["What force keeps us on the ground?", "Gravity"],
+        ["What is the closest star to Earth?", "The Sun"],
+        ["What part of the cell is often called its powerhouse?", "The mitochondria"],
+        ["What is the most abundant gas in Earth's atmosphere?", "Nitrogen"],
+        ["At sea level, water boils at how many degrees Celsius?", "100"],
+        ["Which planet has the most famous ring system?", "Saturn"]
+      ],
+      "History": [
+        ["In what year did the Titanic sink?", "1912"],
+        ["Who was the first President of the United States?", "George Washington"],
+        ["Which ancient civilization built the pyramids at Giza?", "The ancient Egyptians"],
+        ["In what year did humans first land on the Moon?", "1969"],
+        ["Which wall fell in 1989, reuniting a European city?", "The Berlin Wall"],
+        ["Who wrote the first draft of the Declaration of Independence?", "Thomas Jefferson"],
+        ["The Colosseum is in which city?", "Rome"],
+        ["Which ship carried the Pilgrims to America in 1620?", "The Mayflower"],
+        ["Who was the British Prime Minister for most of World War II?", "Winston Churchill"],
+        ["What was the name of the first artificial satellite, launched in 1957?", "Sputnik 1"],
+        ["Which explorer led the first expedition to sail around the world, completed in 1522?", "Ferdinand Magellan (finished by Juan Sebastian Elcano)"],
+        ["Which document did King John sign in 1215?", "The Magna Carta"]
+      ],
+      "Sports": [
+        ["How many players does a soccer team have on the field?", "11"],
+        ["In which sport would you perform a slam dunk?", "Basketball"],
+        ["How many holes are played in a standard round of golf?", "18"],
+        ["Which country hosted the 2016 Summer Olympics?", "Brazil"],
+        ["In tennis, what is a score of zero called?", "Love"],
+        ["How many points is a touchdown worth in American football (before the extra point)?", "Six"],
+        ["What color is the center of an archery target?", "Gold (yellow)"],
+        ["Which sport uses a shuttlecock?", "Badminton"],
+        ["How long is a marathon, in miles (rounded)?", "26.2 miles"],
+        ["In baseball, how many strikes make an out?", "Three"],
+        ["What is the name of the trophy awarded to the NHL champion?", "The Stanley Cup"],
+        ["How many rings are on the Olympic flag?", "Five"]
+      ],
+      "Music": [
+        ["Which band sang \"Hey Jude\"?", "The Beatles"],
+        ["Who is known as the King of Pop?", "Michael Jackson"],
+        ["How many members are in a quartet?", "Four"],
+        ["Which singer released the album \"1989\"?", "Taylor Swift"],
+        ["Freddie Mercury was the lead singer of which band?", "Queen"],
+        ["What is the highest standard female singing voice?", "Soprano"],
+        ["Which rapper's real name is Marshall Mathers?", "Eminem"],
+        ["Which composer wrote the Moonlight Sonata?", "Ludwig van Beethoven"],
+        ["Elvis Presley's home in Memphis is called what?", "Graceland"],
+        ["Which instrument did Jimi Hendrix famously play?", "The electric guitar"],
+        ["Who sang \"Rolling in the Deep\"?", "Adele"],
+        ["How many lines are in a standard music staff?", "Five"]
+      ],
+      "Movies & TV": [
+        ["Which wizarding school does Harry Potter attend?", "Hogwarts"],
+        ["What is the name of the toy cowboy in Toy Story?", "Woody"],
+        ["In The Wizard of Oz, what color are Dorothy's slippers in the film?", "Ruby red"],
+        ["Which TV show features the coffee shop Central Perk?", "Friends"],
+        ["Who directed Jaws and E.T.?", "Steven Spielberg"],
+        ["What is the name of the lion cub hero in The Lion King?", "Simba"],
+        ["In Star Wars, who is Luke Skywalker's father?", "Darth Vader (Anakin Skywalker)"],
+        ["What fictional town do the Simpsons live in?", "Springfield"],
+        ["Which movie features the line \"I'll be back\"?", "The Terminator"],
+        ["What kind of creature is Shrek?", "An ogre"],
+        ["Which superhero is also known as the Dark Knight?", "Batman"],
+        ["What is the name of the paper company in the US version of The Office?", "Dunder Mifflin"]
+      ],
+      "Food & Drink": [
+        ["Which country is the origin of sushi?", "Japan"],
+        ["What is the main ingredient in guacamole?", "Avocado"],
+        ["Which nut is used to make marzipan?", "Almond"],
+        ["What type of pasta is shaped like little ears?", "Orecchiette"],
+        ["What spice gives curry its yellow color?", "Turmeric"],
+        ["Which fruit is used to make a traditional Pina Colada, along with coconut?", "Pineapple"],
+        ["What is the main ingredient in hummus?", "Chickpeas"],
+        ["Which country is famous for the dish paella?", "Spain"],
+        ["Mozzarella is traditionally made from the milk of which animal in Italy?", "Water buffalo"],
+        ["Which Italian dessert is made with ladyfingers, coffee and mascarpone?", "Tiramisu"],
+        ["Which vegetable is used to make sauerkraut?", "Cabbage"],
+        ["What do bees make from nectar?", "Honey"]
+      ],
+      "Animals": [
+        ["What is the largest mammal on Earth?", "The blue whale"],
+        ["How many legs does a spider have?", "Eight"],
+        ["What is a baby kangaroo called?", "A joey"],
+        ["Which bird is known for mimicking human speech?", "The parrot"],
+        ["What is the fastest land animal?", "The cheetah"],
+        ["A group of lions is called what?", "A pride"],
+        ["Which animal is known as the ship of the desert?", "The camel"],
+        ["How many hearts does an octopus have?", "Three"],
+        ["What is the only mammal capable of true flight?", "The bat"],
+        ["Which animal sleeps standing up and is measured in hands?", "The horse"],
+        ["What do you call an animal that eats only plants?", "A herbivore"],
+        ["Which black and white bear eats mostly bamboo?", "The giant panda"]
+      ]
+    };
+    var CATS = Object.keys(BANK);
+    var selected = new Set(CATS);
+    var catsEl = document.getElementById('cats');
+    var roundEl = document.getElementById('round');
+    var toggleBtn = document.getElementById('toggle');
+    var noteEl = document.getElementById('note');
+
+    CATS.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cat'; b.textContent = c;
+      b.setAttribute('aria-pressed', 'true');
+      b.addEventListener('click', function () {
+        if (selected.has(c)) { if (selected.size > 1) selected.delete(c); }
+        else selected.add(c);
+        b.setAttribute('aria-pressed', selected.has(c) ? 'true' : 'false');
+      });
+      catsEl.appendChild(b);
+    });
+
+    function shuffle(a) {
+      for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+      return a;
+    }
+
+    // Spread 10 questions as evenly as possible across the chosen categories.
+    function generate() {
+      var cats = shuffle(CATS.filter(function (c) { return selected.has(c); }));
+      var pools = {};
+      cats.forEach(function (c) { pools[c] = shuffle(BANK[c].slice()); });
+      var picks = [], i = 0;
+      while (picks.length < 10) {
+        var c = cats[i % cats.length];
+        if (pools[c].length) picks.push({ cat: c, q: pools[c].pop() });
+        i++;
+        if (i > 500) break;
+      }
+      shuffle(picks);
+      roundEl.innerHTML = '';
+      picks.forEach(function (p) {
+        var li = document.createElement('li');
+        var cat = document.createElement('div'); cat.className = 'q-cat'; cat.textContent = p.cat;
+        var q = document.createElement('div'); q.className = 'q-text'; q.textContent = p.q[0];
+        var a = document.createElement('div'); a.className = 'q-ans'; a.textContent = 'Answer: ' + p.q[1];
+        li.appendChild(cat); li.appendChild(q); li.appendChild(a);
+        roundEl.appendChild(li);
+      });
+      setAnswers(false);
+      noteEl.textContent = 'Fresh round from ' + cats.length + (cats.length === 1 ? ' category' : ' categories') + '. Tap Generate again for another.';
+    }
+
+    function setAnswers(show) {
+      roundEl.classList.toggle('hide-answers', !show);
+      toggleBtn.textContent = show ? 'Hide Answers' : 'Show Answers';
+      toggleBtn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    }
+
+    document.getElementById('gen').addEventListener('click', generate);
+    toggleBtn.addEventListener('click', function () { setAnswers(roundEl.classList.contains('hide-answers')); });
+    document.getElementById('print').addEventListener('click', function () { setAnswers(true); window.print(); });
+    generate();
+  })();
+  </script>
+</body>
+</html>

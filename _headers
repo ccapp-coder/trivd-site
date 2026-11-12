@@ -2,3 +2,11 @@
   Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+
+# Images: cache for 30 days (rename the file when an image changes).
+/img/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/og.jpg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
